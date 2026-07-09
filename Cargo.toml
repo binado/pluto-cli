@@ -1,0 +1,14 @@
+[package]
+name = "pluto-cli"
+version = "0.1.0"
+edition = "2024"
+description = "A thin CLI launcher for the Pluto.jl notebook server"
+license = "MIT"
+
+[[bin]]
+name = "pluto"
+path = "src/main.rs"
+
+[dependencies]
+clap = { version = "4", features = ["derive", "env"] }
+clap_complete = "4"
