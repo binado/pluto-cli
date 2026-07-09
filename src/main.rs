@@ -128,7 +128,10 @@ mod tests {
 
     /// The `key=value` pairs after the `--` separator.
     fn kv_pairs(args: &[OsString]) -> &[OsString] {
-        let sep = args.iter().position(|a| a == "--").expect("-- separator present");
+        let sep = args
+            .iter()
+            .position(|a| a == "--")
+            .expect("-- separator present");
         &args[sep + 1..]
     }
 
@@ -149,17 +152,23 @@ mod tests {
     #[test]
     fn flags_map_to_key_value_pairs() {
         let args = args_for(&["-n", "nb.jl", "--base-url", "/pluto/", "-t", "auto"]);
-        assert_eq!(kv_pairs(&args), &[
-            OsString::from("notebook=nb.jl"),
-            "base_url=/pluto/".into(),
-            "threads=auto".into(),
-        ]);
+        assert_eq!(
+            kv_pairs(&args),
+            &[
+                OsString::from("notebook=nb.jl"),
+                "base_url=/pluto/".into(),
+                "threads=auto".into(),
+            ]
+        );
     }
 
     #[test]
     fn multiple_notebooks_are_repeated_in_order() {
         let args = args_for(&["-n", "a.jl", "-n", "b.jl"]);
-        assert_eq!(kv_pairs(&args), &[OsString::from("notebook=a.jl"), "notebook=b.jl".into()]);
+        assert_eq!(
+            kv_pairs(&args),
+            &[OsString::from("notebook=a.jl"), "notebook=b.jl".into()]
+        );
     }
 
     #[test]
@@ -172,6 +181,9 @@ mod tests {
     #[test]
     fn path_with_spaces_stays_one_argument() {
         let args = args_for(&["-n", "/tmp/my notebooks/nb 1.jl"]);
-        assert_eq!(kv_pairs(&args), &[OsString::from("notebook=/tmp/my notebooks/nb 1.jl")]);
+        assert_eq!(
+            kv_pairs(&args),
+            &[OsString::from("notebook=/tmp/my notebooks/nb 1.jl")]
+        );
     }
 }
