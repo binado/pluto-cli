@@ -14,7 +14,15 @@ pluto
 
 ## Install
 
-Requires a Rust toolchain and a Julia install with Pluto available.
+Requires a Rust toolchain and a Julia install with Pluto available in the
+selected Julia project environment.
+
+```bash
+cargo install pluto-cli
+julia -e 'using Pkg; Pkg.add("Pluto")'
+```
+
+From a local checkout:
 
 ```bash
 cargo install --path .
