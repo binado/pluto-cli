@@ -3,6 +3,7 @@ name = "pluto-cli"
 version = "0.1.0"
 edition = "2024"
 description = "A thin CLI launcher for the Pluto.jl notebook server"
+authors = ["Bernardo Veronese"]
 license = "MIT"
 
 [[bin]]
